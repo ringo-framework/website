@@ -102,7 +102,12 @@
                 <div class="col-lg-12">
                     <h2>About</h2>
                     <p>Ringo is a Python based high level web application
-                    framework build with Pyramid.</p>
+                    framework build on top of <a
+                    href="http://www.pylonsproject.org/"
+                    target="_blank">Pyramid</a>. The framework can be used to
+                    build form based management or administration software.
+                    Ringo is a littlebit like an administration application on
+                    stereoids for your data.</p>
                     <hr style="color:gray">
                 </div>
             </div>
@@ -110,15 +115,34 @@
                 <div class="col-sm-4">
                   <h3>Strength</h3>
                   <p>
+                  Collecting and managing data. <strong>Fast and flexible
+                  development</strong> because
+                  of the <strong>building block architectur</strong> and
+                  <strong>"Ready to Use"</strong>
+                  components.</p>
+                  <p>
+                  Major field of application for Ringo are <strong>form
+                  based</strong> and <strong>data
+                  driven</strong> applications. Examples are:
+                  <strong>Case Management</strong>
+                  software in social casework, <strong>data
+                  aquisition</strong> and <strong>evaluation</strong>
+                  in a scientic environment, general
+                  <strong>colloborative work</strong> and management of your
+                  data.
                   </p>
                 </div>
                 <div class="col-sm-4">
                   <h3>Motivation</h3>
-                  <p>
-                  Through 10 years expierence.
-                  Starting as a spare time project with the goal to create a
-                  tools which helps me to build webapplications 
-                  </p>
+                  <p>In the last 10 years I have build similar webapplication
+                  from scratch much too often! Although they were different in
+                  what they exactly did, they all shared a common set of needs
+                  like user administration, a permission system or nice forms
+                  with validation and so on.</p>
+                  <p>This project started in 2013 as a private spare time
+                  project with the goal to create a tool which helps me to
+                  build such applications much faster than before. And it
+                  worked out!</p>
                 </div>
                 <div class="col-sm-4">
                   <h3>Status <img src="https://drone.io/bitbucket.org/ti/ringo/status.png"/></h3>
@@ -236,23 +260,48 @@
               <div class="col-lg-12">
                   <h2>Get started!</h2>
                   <hr>
+                  <p>The following steps will show you how easy it is to create a
+                  Ringo based application and start storing your data in a new
+                  modul.</p>
                   <h3>1. Download and install ringo</h3>
+                  <p>Get the source from Bitbucket and install Ringo. I recommend
+                  you to to this in a <a href="http://virtualenv.readthedocs.org/en/latest/" target="_blank">virtialenv</a>.</p>
                   <pre>
                   hg clone https://bitbucket.org/ti/ringo
                   cd ringo
                   python setup.py development
                   </pre>
                   <h3>2. Create a new ringo based application</h3>
+                  <p>Ringo comes with an application scaffold which make it
+                  easy to create a new Ringo based application.</p>
                   <pre>
                   pcreate -t ringo Foo
                   cd foobar
                   python setup.py development
                   </pre>
-                  <h3>3. Create a new modul for your application</h3>
+                  <p>To be able to do the next steps you need to install your
+                  new application too.</p>
+                  <h3>3. Initialise the database</h3>
+                  <p>Initialise the database by invoking one of the nice
+                  administration commands.</p>
+                  <pre>
+                  foo-admin db init 
+                  </pre>
+                  <p>Now the application is ready and could be started. But
+                  wait! We need a new modul to store your data.</p>
+                  <h3>4. Create a new modul for your application</h3>
+                  <p>Creating a new modul is easy. Thanks to the
+                  administration command its simply a question of doing the
+                  following.</p>
+                  <p></p>
                   <pre>
                   foo-admin modul add bar
                   </pre>
-                  <h3>4. Start your new application</h3>
+                  <p>This command will create a new modul calle "bar" and also
+                  creates default LCRUDIE (List, Create, Read, Delete, Import
+                  and Export) views!</p>
+                  <h3>5. Start your new application</h3>
+                  <p>Here we are! Its time to lauch the application.</p>
                   <pre>
                   pserve --reload development
                   </pre>
@@ -266,34 +315,6 @@
         <div class="footer-above">
             <div class="container">
                 <div class="row">
-                    <!--
-                    <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                    </div>
-                    -->
-                    <!--
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    -->
                     <div class="footer-col col-md-4">
                         <h4>License</h4>
                         <p class="small">Ringo is Free Software. It is licensed under the GPL license in version 2 or
@@ -309,7 +330,7 @@ later. See <a href="http://www.gnu.org/licenses/gpl-2.0">GPL License v2</a> for 
                         href="irc://irc.freenode.net/#ringo-framework" target="_blank">#ringo-framework IRC channel</a>.</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h4>Professional Support <i class="fa fa-fw fa-ambulance"></i></h4>
+                        <h4>Professional Support <i class="fa fa-fw fa-support"></i></h4>
                         <p class="small">Professional application development
                         and support is available from the <a href="https://www.intevation.org"
                         target="_blank">Intevation GmbH</a>. Please write an email to <a
@@ -322,9 +343,7 @@ later. See <a href="http://www.gnu.org/licenses/gpl-2.0">GPL License v2</a> for 
         <div class="footer-below text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; Torsten Irländer 2014
-                    </div>
+                    <div class="col-lg-12">Copyright &copy; Torsten Irländer 2014</div>
                 </div>
             </div>
         </div>
