@@ -266,45 +266,84 @@
                   <hr>
                   <p>The following steps will show you how easy it is to create a
                   Ringo based application and start storing your data in a new
-                  module.</p>
-                  <h3>1. Download and install Ringo</h3>
-                  <p>Get the source from Bitbucket and install Ringo. I recommend
-                  you to to this in a <a href="http://virtualenv.readthedocs.org/en/latest/" target="_blank">virtialenv</a>.</p>
+                  module. The new application will be called
+                  <strong>Foo</strong></p>
+                  <h3>0. Requirements</h3>
+                  <p>This setup is tested on Ubuntu 12.10 but should
+                  (hopefully) work on other distributions too.</p>
+                  <ul>
+                    <li>Python 2.7.8</li>
+                    <li><a href="http://virtualenv.readthedocs.org/en/latest/"
+                    target="_blank">Virtualenv</a> (Tested with version 1.11.6)</li>
+                    <li>On installation at least lxml will be compiled so you
+                    might need some extra libraries and tools... Will add more
+                    details soon.</li>
+                  </ul>
+                  <h3>1. Create a home for your development</h3>
+                  <p>First start with creating some folders where your ringo
+                  application development can happen.</p>
+                  <pre>
+                  mkdir Foo
+                  cd Foo
+                  # Create a virtualenv for your new Foo application
+                  virtualenv env
+                  # Activate the virtual env and continue the next steps with
+                  # activated virtual env.
+                  source env/bin/activate
+                  </pre>
+                  <h3>2. Download and install Ringo</h3>
+                  <p>Get the source from Bitbucket and install Ringo. </p>
                   <pre>
                   hg clone https://bitbucket.org/ti/ringo
                   cd ringo
-                  python setup.py development
+                  python setup.py develop
+                  # Leave the ringo directory to continue with the next step.
+                  cd ..
                   </pre>
-                  <h3>2. Create a new Ringo based application</h3>
+                  <h3>3. Create a new Ringo based application</h3>
                   <p>Ringo comes with an application scaffold which make it
                   easy to create a new Ringo based application.</p>
                   <pre>
                   pcreate -t ringo Foo
-                  cd foobar
-                  python setup.py development
+                  cd Foo
+                  python setup.py develop
                   </pre>
                   <p>To be able to do the next steps you need to install your
                   new application too.</p>
-                  <h3>3. Initialise the database</h3>
+                  <h3>4. Initialise the database and start the application.</h3>
                   <p>Initialise the database by invoking one of the nice
-                  administration commands.</p>
+                  administration commands. After that we can start our fresh
+                  created application for the first time.</p>
                   <pre>
                   foo-admin db init 
+                  pserve development.ini
                   </pre>
-                  <p>Now the application is ready and could be started. But
-                  wait! We need a new module to store your data.</p>
-                  <h3>4. Create a new module for your application</h3>
-                  <p>Creating a new module is easy. Thanks to the
-                  administration command its simply a question of doing the
-                  following.</p>
+                  <p>Stop the server by pressing CTRL-C</p>
+                  <h3>5. Create a new module for your application</h3>
+                  <p>Wow that was easy! But wait. We want to create a new
+                  module to store some custom items in our application. Let's
+                  say we want to store <i>bar</i> items. Creating a new module
+                  is easy. Thanks to the administration command its simply a
+                  question of doing the following.</p>
                   <p></p>
                   <pre>
                   foo-admin modul add bar
+                  cp foo.sqlite foo.sqlite.backup
+                  # Apply the generated alembic migration script to update
+                  # your database.
+                  alembic upgrade head
                   </pre>
                   <p>This command will create a new module called "bar" and also
                   creates default LCRUDIE (List, Create, Read, Delete, Import
-                  and Export) views!</p>
-                  <h3>5. Start your new application</h3>
+                  and Export) views!<br>
+                  <strong>Note:</strong> There is currently an <a
+                  href="https://bitbucket.org/ti/ringo/issue/82/migration-of-the-database-for-the-first"
+                  taregt="_blank">issue with the
+                  migration</a>. If the migration fails and no new module
+                  entry has been made in the database than restore the backup
+                  and retry it again.
+                  </p>
+                  <h3>6. Start your new application</h3>
                   <p>Here we are! Its time to launch the application.</p>
                   <pre>
                   pserve --reload development
