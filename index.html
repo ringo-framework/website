@@ -336,14 +336,34 @@
                   <p>This command will create a new module called "bar" and also
                   creates default LCRUDIE (List, Create, Read, Delete, Import
                   and Export) views!<br>
-                  <strong>Note:</strong> There is currently an <a
+                  <s></s><strong>Note:</strong> There might be an <a
                   href="https://bitbucket.org/ti/ringo/issue/82/migration-of-the-database-for-the-first"
                   taregt="_blank">issue with the
                   migration</a>. If the migration fails and no new module
                   entry has been made in the database than restore the backup
                   and retry it again.
                   </p>
-                  <h3>6. Start your new application</h3>
+                  <h3>6. Customize the new module.</h3>
+                  <p>This step is optional. If just want to
+                  get a fast impression of a Ringo based application skip over
+                  to step 7.</p>
+                  <p>Otherwise this step is a good starting point if you
+                  want to actually safe something useful in your new module.
+                  The created module is still empty. It just has the basic
+                  attribute like an internal ID. It is waiting to be filled
+                  with life ;)<br>
+                  The next steps are
+                  <ol>
+                    <li>Extending the model of the module by adding new fields.</li>
+                    <li>Designing nice forms.</li>
+                    <li>Configuring the overview page.</li>
+                  </ol>
+                  Step 1 and 2 can be seen as one step which is described in
+                  the Ringo documentation. See <a
+                  href="http://ringo.readthedocs.org/en/latest/development.html#adding-new-fields-to-the-model"
+                  target="_blank">Adding new fields to the model</a> section.<br>
+                  </p>
+                  <h3>7. Start your new application</h3>
                   <p>Here we are! Its time to launch the application.</p>
                   <pre>
                   pserve --reload development
