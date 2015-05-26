@@ -334,20 +334,17 @@
                   <p></p>
                   <pre>
                   foo-admin modul add bar
+                  # This will autogenerate some files needed to do the
+                  # migration. But first we will backup the database.
                   cp foo.sqlite foo.sqlite.backup
                   # Apply the generated alembic migration script to update
-                  # your database.
-                  alembic upgrade head
+                  # your database. 
+                  foo-admin db upgrade
+                  foo-admin fixtures load
                   </pre>
                   <p>This command will create a new module called "bar" and also
                   creates default LCRUDIE (List, Create, Read, Delete, Import
-                  and Export) views!<br>
-                  <s></s><strong>Note:</strong> There might be an <a
-                  href="https://bitbucket.org/ti/ringo/issue/82/migration-of-the-database-for-the-first"
-                  taregt="_blank">issue with the
-                  migration</a>. If the migration fails and no new module
-                  entry has been made in the database than restore the backup
-                  and retry it again.
+                  and Export) views!
                   </p>
                   <h3>6. Customize the new module.</h3>
                   <p>This step is optional. If just want to
