@@ -161,7 +161,6 @@
             </div>
         </div>
     </section>
-
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
         <div class="container">
@@ -259,14 +258,16 @@
                   <h2>Get started!</h2>
                   <hr>
                   <p>The following steps will show you how easy it is to create a
-                  Ringo based application and start storing your data in a new
-                  module. The new application will be called
-                  <strong>Foo</strong></p>
+                  Ringo based application using a postgres database and start
+                  storing your data in a new module. The new application will
+                  be called <strong>Foo</strong></p>
                   <h3>0. Requirements</h3>
                   <p>This setup is tested on Ubuntu 12.10 but should
                   (hopefully) work on other distributions too.</p>
                   <ul>
                     <li>Python 2.7.8</li>
+                    <li>A PostgreSQL or any other "real" database.<strong> With version 1.2.0 SQLite is no
+                      longer supported!</strong></li>
                     <li><a href="http://virtualenv.readthedocs.org/en/latest/"
                     target="_blank">Virtualenv</a> (Tested with version 1.11.6)</li>
                     <li>On installation at least lxml will be compiled so you
@@ -309,8 +310,8 @@
                   administration commands. After that we can start our fresh
                   created application for the first time.</p>
                   <pre>
-                  foo-admin db init 
-                  foo-admin fixtures load
+                  createdb foo
+                  foo-admin db init
                   pserve development.ini
                   </pre>
                   <p>Stop the server by pressing CTRL-C</p>
@@ -322,6 +323,10 @@
                   question of doing the following.</p>
                   <p></p>
                   <pre>
+                  # First we will backup the database.
+                  cp foo.sqlite foo.sqlite.backup
+                  # Then invoke the command to add a new modul to your
+                  # application
                   foo-admin modul add bar
                   # Please follow the instructions printed on the console
                   # after invoking the command.
