@@ -299,12 +299,19 @@
                   <ul>
                     <li>Python 2.7.8</li>
                     <li>A PostgreSQL or any other "real" database.<strong> With version 1.2.0 SQLite is no
-                      longer supported!</strong></li>
+                      longer supported!</strong>. The setup of the database
+                    is out of scope of this short introducion. Please refer to
+                    the documentation of your database.</br>The default
+                    configuration expects that the user who starts the application is allowed to
+                    connect to configured database without a password using
+                    unix sockets. If you want a different behaviour you can change the db connection in the
+                    development.ini file.</li>
                     <li><a href="http://virtualenv.readthedocs.org/en/latest/"
                     target="_blank">Virtualenv</a> (Tested with version 1.11.6)</li>
-                    <li>On installation at least lxml will be compiled so you
-                    might need some extra libraries and tools... Will add more
-                    details soon.</li>
+                    <li>On installation at least lxml and psycopg2 (PostgreSQL
+                    Driver for Postgres) will be compiled so you might need
+                    some extra libraries (dev packages) and tools... Will add more details
+                    soon.</li>
                   </ul>
                   <h3>1. Create a home for your development</h3>
                   <p>First start with creating some folders where your ringo
@@ -356,7 +363,7 @@
                   <p></p>
                   <pre>
                   # First we will backup the database.
-                  cp foo.sqlite foo.sqlite.backup
+                  pg_admin foo > foo.sql
                   # Then invoke the command to add a new modul to your
                   # application
                   foo-admin modul add bar
@@ -395,7 +402,7 @@
                   <h3>7. Start your new application</h3>
                   <p>Here we are! Its time to launch the application.</p>
                   <pre>
-                  pserve --reload development
+                  pserve --reload development.ini
                   </pre>
               </div>
           </div>
